@@ -1,6 +1,6 @@
 package com.example;
 
-import com.hazelcast.map.IMap;
+import com.hazelcast.replicatedmap.ReplicatedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.CompletionStage;
+
 
 @RestController
 public class TestController {
 
     @Autowired
     @Qualifier("blackList")
-    IMap<String, Boolean> blackList;
+    ReplicatedMap<String, Boolean> blackList;
 
     @GetMapping
     String getUserId(@RequestParam String id) {
