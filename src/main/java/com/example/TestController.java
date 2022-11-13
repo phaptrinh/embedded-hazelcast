@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.CompletionStage;
+
 @RestController
 public class TestController {
 
@@ -16,15 +18,22 @@ public class TestController {
     IMap<String, Boolean> blackList;
 
     @GetMapping
-    Boolean getUserId(@RequestParam String id) {
-       if (blackList.get(id) != null) {
-           return true;
+    String getUserId(@RequestParam String id) {
+       long start = System.currentTimeMillis();
+       Boolean aBoolean = blackList.get(id);
+       long getTime = System.currentTimeMillis() - start;
+       if (aBoolean == true) {
+           return String.valueOf(getTime);
        }
-        return false;
+       return "false";
+
     }
 
     @PostMapping
-    void addUserId(@RequestParam String id) {
+    String addUserId(@RequestParam String id) {
+        long start = System.currentTimeMillis();
         blackList.put(id, true);
+        long getTime = System.currentTimeMillis() - start;
+        return String.valueOf(getTime);
     }
 }

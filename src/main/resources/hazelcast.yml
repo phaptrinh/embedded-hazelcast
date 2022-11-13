@@ -6,4 +6,5 @@ hazelcast:
         enabled: true
         member-list:
           - 192.168.123.246
+          - 192.168.123.196
 
