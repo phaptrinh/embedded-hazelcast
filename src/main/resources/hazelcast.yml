@@ -1,0 +1,9 @@
+hazelcast:
+  cluster-name: dev
+  network:
+    join:
+      tcp-ip:
+        enabled: true
+        member-list:
+          - 192.168.123.246
+
